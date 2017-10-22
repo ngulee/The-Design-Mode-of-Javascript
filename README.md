@@ -1,5 +1,5 @@
 # The-Design-Mode-of-Javascript
-The study notes of  design mode about Javascript
+The study notes of  design mode about Javascript  
 该学习笔记包括五篇：
 第一篇 面向对象编程
   第一章 灵活的语言——JavaScript
