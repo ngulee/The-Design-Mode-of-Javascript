@@ -1,0 +1,26 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+#news-module {
+	width: 250px;
+	margin: 20px auto;
+	padding: 15px;
+	border: 1px solid #ccc;
+}
+li.normal {
+	list-style: none;
+	padding: 5px 0;
+}
+img.icon-img {
+	height: 21px;
+	vertical-align: top;
+}
+.has-img  {
+	position: relative;
+	
+}
+.has-img .text {
+	
+}

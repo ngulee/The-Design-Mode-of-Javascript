@@ -149,6 +149,7 @@ inheritPrototype(Images, News);
 Images.prototype.init = function() {
   this.element = document.createElement("a");
   var img = new Image();
+  img.className = "icon-img";
   img.src = this.url;
   this.element.appendChild(img);
   this.element.className = "image-news " + this.classname;
@@ -159,3 +160,104 @@ Images.prototype.add = function() {};
 Images.prototype.getElement = function() {
   return this.element;
 }
+
+var Icons = function(text, href, classname) {
+  News.call(this);
+  this.text = text;
+  this.href = href || "";
+  this.classname = classname || "video";
+  this.init();
+}
+
+inheritPrototype(Icons, News);
+
+Icons.prototype.init = function() {
+  this.element = document.createElement("a");
+  this.element.innerHTML = this.text;
+  this.element.href = this.href;
+  this.element.className = "icon " + this.classname;
+}
+
+Icons.prototype.add = function() {};
+Icons.prototype.getElement = function() {
+  return this.element;
+}
+
+var EasyNews = function(text, href) {
+  News.call(this);
+  this.text = text;
+  this.href = href || "#";
+  this.init();
+}
+
+inheritPrototype(EasyNews, News);
+
+EasyNews.prototype.init = function() {
+  this.element = document.createElement("a");
+  this.element.innerHTML = this.text;
+  this.element.href = this.href;
+  this.element.className = "text";
+}
+
+EasyNews.prototype.add = function() {};
+EasyNews.prototype.getElement = function() {
+  return this.element;
+}
+
+var TypeNews = function(text, href, classname, pos) {
+  News.call(this);
+  this.text = text;
+  this.href = href || "#";
+  this.classname = classname || "";
+  this.pos = pos || "left";
+  this.init();
+}
+
+inheritPrototype(TypeNews,News);
+TypeNews.prototype.init = function() {
+  this.element = document.createElement("a");
+  if(this.pos == "left") {
+    this.element.innerHTML = "[" + this.classname + "]" + this.text;
+  }else {
+    this.element.innerHTML = this.text + "[" + this.classname + "]";
+  }
+  this.element.href = this.href;
+  this.element.className = "text";
+}
+
+TypeNews.prototype.add = function() {};
+TypeNews.prototype.getElement = function() {
+  return this.element;
+}
+
+/*新闻类都已经创建出来了，现在要是用，就可以通过add方法像一棵树一样一层一层创建新闻即可*/
+
+var news1 = new Container("news-container",document.getElementById("news-module"));
+console.log(news1);
+news1.add(
+  new Item("normal").add(
+    new Icons("梅西不拿金球奖也伟大", "#", "video")
+  )
+).add(
+  new Item("normal").add(
+    new Icons("保护强国强队用意明显", "#", "live")
+  )
+).add(
+  new Item("normal").add(
+    new NewsGroup("has-img").add(
+      new Images("./imgs/01.png","#","small")
+    ).add(
+      new EasyNews("从240斤的胖子成功变成型男&ensp;", "#")
+    ).add(
+      new EasyNews("五大雷人跑步机", "#")
+    )
+  )
+).add(
+  new Item("normal").add(
+      new TypeNews(" AK47不愿为费城打球", "#", "NBA", "left")
+    )
+).add(
+  new Item("normal").add(
+      new TypeNews("火炮飚6 三分创新高 ", "#", "CBA", "right")
+    )
+).show();
